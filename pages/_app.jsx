@@ -7,7 +7,9 @@ const GlobalStyle = createGlobalStyle`
   * {
     padding: 0;
     margin: 0;
-    height: fit-content;
+    height: fit-content;    
+    overflow-x: none;    
+    max-width: 100;
   }
 
   body {

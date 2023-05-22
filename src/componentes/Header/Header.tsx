@@ -39,9 +39,9 @@ const Header = ({setMenuIsVisible}:Props) => {
         </div>   
 
         <div className={styles.icons}>
-          <img src="search.png" alt="" />
-          <img src="carrinho.png" alt="" />
-          <img src="user-50.png" alt="" />   
+          <img src="icons/search.png" alt="" />
+          <img src="icons/carrinho.png" alt="" />
+          <img src="icons/user-50.png" alt="" />   
         </div>
         
       </header>
