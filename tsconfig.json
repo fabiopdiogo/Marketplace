@@ -22,7 +22,7 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx"
-, "pages/_document.jsx", "pages/index.tsx", "src/Sections/Cover/Cover.js"  ],
+, "pages/_document.jsx", "pages/index.tsx", "src/Sections/Cover/Cover.js", "pages/login.tsx"  ],
   "exclude": [
     "node_modules"
   ]

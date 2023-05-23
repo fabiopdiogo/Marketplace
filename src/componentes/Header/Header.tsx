@@ -2,21 +2,9 @@ import React from 'react';
 import styled from 'styled-components';
 import styles from "./Header.module.css";
 
-const Open = styled.img`
-  display: none;
-  
-  @media(max-width:880px){
-    display:flex;
-    position: absolute;
-    top: 1px;
-    right: 1px;
-    padding: 20px;
-    cursor: pointer;
-  }
-`
 
 interface Props{
-  setMenuIsVisible(setMenuIsVisible: boolean): void;
+  setMenuIsVisible?(setMenuIsVisible: boolean): void;
 }
 
 const Header = ({setMenuIsVisible}:Props) => {

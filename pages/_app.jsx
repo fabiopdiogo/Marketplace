@@ -9,7 +9,6 @@ const GlobalStyle = createGlobalStyle`
     margin: 0;
     height: fit-content;    
     overflow-x: none;    
-    max-width: 100;
   }
 
   body {

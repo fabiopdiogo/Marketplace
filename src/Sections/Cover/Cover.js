@@ -7,7 +7,7 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
 const Img = styled.img`
-    width: 100vw;
+    width: fit-content;
     height: 400px;
     object-fit: cover;
 `
