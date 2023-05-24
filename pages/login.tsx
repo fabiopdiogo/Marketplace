@@ -10,15 +10,19 @@ const Div = styled.div`
   background-color: #fff;  
   height: 100vh;  
   gap: 5px;
+
+  p{
+    font-weight: bold;
+  }
 `
 const Img = styled.img`
   width: 50px;
 `
 const Text = styled.textarea`
   width: 200px;
-  resize:none;
-  
+  resize:none;  
 `
+
 const Button = styled.button`
   width: 100px;
   resize:none;  
@@ -26,8 +30,8 @@ const Button = styled.button`
   color:#ffffff;  
   padding: 15px;
   cursor: pointer;
-
 `
+
 const DivButton = styled.div`
   display:flex;
   gap:5px;
