@@ -1,14 +1,15 @@
 import styled from 'styled-components'
-import { useController } from 'react-hook-form'
+import { Control, FieldValues, useController } from 'react-hook-form'
 
-const InputContainer = styled.div`
+import { Tooltip as ReactTooltip } from 'react-tooltip'
+
+
+
+const InputContainer = styled.div<InputProps>`
   width: 100%;
+  grid-area: ${props =>props.grid};
 `
-const StyledLabel = styled.p`
-  font-weight: bold;
-  font-size: 14px;
-  margin-bottom: 5px;
-`
+
 const StyledInput = styled.input`
   width: 100%;
   border: 1px solid black;
@@ -16,12 +17,16 @@ const StyledInput = styled.input`
   padding: 15px 20px;
   box-sizing: border-box;
   border-radius: 10px;  
-  grid-area: nome;
 
 
   &:focus {
     outline: none
   }
+`
+const StyledLabel = styled.p`
+  font-weight: bold;
+  font-size: 14px;
+  margin-bottom: 5px;
 `
 
 const ErrorLabel = styled.span`
@@ -30,7 +35,7 @@ const ErrorLabel = styled.span`
   font-size: 14px;
 `
 const errorMessage = {
-  'string.empty': 'Este campo é obrigatótio.',
+  'string.empty': 'Este campo é obrigatório.',
   'string.email': 'Por favor, digite um e-mail válido.',
   'string.min': 'A senha deve ter no minimo 6 caracteres.',
   'duplicated': 'Já existe uma conta criada com esse valor.'
@@ -38,20 +43,26 @@ const errorMessage = {
 
 interface Props{
   name: string,
-  control: string,
+  control: Control<FieldValues>,
   label: string,
   defaultValue: string
 }
 
-const Input = ({label,name, control, defaultValue = ''}) => {
+type InputProps ={
+  grid: string;
+}
+
+const Input = ({label,name, control, defaultValue = ''} : Props) => {
   const{
     field: { value, onChange },
     fieldState: { error }
   } = useController({ name, control, defaultValue})
   return (
-    <InputContainer>
-      <StyledInput placeholder={label} value={value} onChange={onChange}/>
-      {error && <ErrorLabel>{errorMessage[error.type] || error.message}</ErrorLabel>}
+    <InputContainer grid={name}>
+      <StyledLabel>{label}</StyledLabel>
+      <StyledInput placeholder={label} value={value} onChange={onChange} />
+      {error && <ErrorLabel>{errorMessage[error.type] || error.message}</ErrorLabel>}      
+      <ReactTooltip id="emailTooltip" place="right" />
     </InputContainer>
   )
 }

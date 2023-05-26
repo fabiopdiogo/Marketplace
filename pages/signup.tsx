@@ -31,51 +31,12 @@ const Form = styled.form`
   height: auto;
 `
 
-const Nome = styled.input`
-  grid-area: nome;
-  padding: 10px;
-  border: 1px solid grey;
-`
-const Sobrenome = styled.input`
-  grid-area:sobrenome;
-  padding: 10px;
-  border: 1px solid grey;
+
+const Sexo = styled.div`  
+  width: 100%;
+  grid-area:sexo ;  
 `
 
-const Email = styled.input`
-  grid-area:email ;
-  padding: 10px;
-  border: 1px solid grey;
-`
-
-const Data = styled.input`
-  grid-area:data ;
-  padding: 10px;
-  border: 1px solid grey;
-`
-
-const Sexo = styled.select`
-  grid-area:sexo ;
-  padding: 10px;
-  border: 1px solid grey;
-`
-
-const CPF = styled.input`
-  grid-area:cpf ;
-  padding: 10px;
-  border: 1px solid grey;
-`
-
-const Telefone = styled.input`
-  grid-area:telefone ;
-  padding: 10px;
-  border: 1px solid grey;
-`
-const Senha = styled.input`
-  grid-area:senha ;
-  padding: 10px;
-  border: 1px solid grey;
-`
 const Button = styled.button`
   grid-area:button ;
   padding: 10px;
@@ -85,28 +46,55 @@ const Button = styled.button`
   border: none;
   border-radius:5px;
 `
+const StyledLabel = styled.p`
+  font-weight: bold;
+  font-size: 14px;
+  margin-bottom: 5px;
+`
+const StyledSelect = styled.select`
+  width: 100%;
+  border: 1px solid black;
+  background-color: #F5F5F5;
+  padding: 15px 20px;
+  box-sizing: border-box;
+  border-radius: 10px;  
+
+
+  &:focus {
+    outline: none
+  }
+`
 
 function signup(){
-  const {control,handleSubmit}=useForm({
+  const {control,handleSubmit} = useForm({
     resolver: joiResolver(signupSchema)
   })
+
+  function handleForm(data){
+    console.log(data)
+  }
+
   return(
     <Container>
+      
       <h2>Insira seus dados</h2>
-      <Form action="">
-        <Input name="firstName" label="Nome" control={control}/>
-        <Sobrenome name="lastName" type="text" placeholder="Sobrenome"/>
-        <Email name="email" type="text" placeholder="Email"/>
-        <Data name="data" type="text" placeholder="Data"/>
-        <Sexo name="user" placeholder="Sexo" defaultValue="vazio">
-          <option value="vazio">Selecione...</option>
-          <option value="Masculino">Masculino</option>
-          <option value="Feminino">Feminino</option>
+      <Form onSubmit={handleSubmit(handleForm)}>
+        <Input name="nome" label="Nome" control={control} defaultValue=""/>
+        <Input name="sobrenome" label="Sobrenome" control={control} defaultValue=""/>
+        <Input name="email" label="E-mail" control={control} defaultValue=""/>
+        <Input name="data" label="Data" control={control} defaultValue=""/>
+        <Sexo>
+          <StyledLabel>Sexo</StyledLabel>
+          <StyledSelect name="sexo"  placeholder="Sexo" defaultValue="vazio">
+            <option value="vazio">Selecione...</option>
+            <option value="Masculino">Masculino</option>
+            <option value="Feminino">Feminino</option>
+          </StyledSelect>
         </Sexo>
-        <CPF name="cpf" placeholder="Cpf"/>
-        <Telefone name="telefone" placeholder="Telefone"/>
-        <Senha name="email" placeholder="Senha"/>
-        <Button>Cadastrar</Button>
+        <Input name="cpf" label="CPF" control={control} defaultValue=""/>
+        <Input name="telefone" label="Telefone" control={control} defaultValue=""/>
+        <Input name="senha" label="Senha" control={control} defaultValue=""/>
+        <Button type="submit" >Cadastrar</Button>
       </Form>  
     </Container>
   )
