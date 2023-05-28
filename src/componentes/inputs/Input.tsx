@@ -62,7 +62,6 @@ const Input = ({label,name, control, defaultValue = ''} : Props) => {
       <StyledLabel>{label}</StyledLabel>
       <StyledInput placeholder={label} value={value} onChange={onChange} />
       {error && <ErrorLabel>{errorMessage[error.type] || error.message}</ErrorLabel>}      
-      <ReactTooltip id="emailTooltip" place="right" />
     </InputContainer>
   )
 }

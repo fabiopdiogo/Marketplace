@@ -31,7 +31,6 @@ const Form = styled.form`
   height: auto;
 `
 
-
 const Sexo = styled.div`  
   width: 100%;
   grid-area:sexo ;  
