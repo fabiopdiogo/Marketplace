@@ -12,18 +12,31 @@ export default function HomePage(){
     width: 100%;
     overflow-x: hidden;
   `
-
+  const Div = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+`
   const Img = styled.img`
     width: 100vw;
   `
-
   const ItemsSection = styled.section`
     display: grid;
     grid-template-columns: repeat(4, 1fr);
+    grid-gap:80px;
+    width: 90%;
     justify-content: center;
     align-items:center;
     flex-wrap: wrap;
-    padding-left: 70px;   
+
+    @media(max-width: 1440px){
+      grid-template-columns: repeat(3, 1fr);
+    }
+    @media(max-width: 678px){
+      grid-template-columns: repeat(2, 1fr);
+      grid-gap:40px;
+    }
+
   `
 
   return(
@@ -31,15 +44,17 @@ export default function HomePage(){
       <Header setMenuIsVisible={setMenuIsVisible}></Header>
       <Cover/>
       <Img src="covers/accolades.png" />      
-      <ItemsSection>
-        <ItemCard src="items/tenis1.jpg"/>
-        <ItemCard src="items/tenis2.jpg"/>
-        <ItemCard src="items/tenis3.jpg"/>
-        <ItemCard src="items/tenis4.jpg"/>
-        <ItemCard src="items/tenis5.jpg"/>
-        <ItemCard src="items/tenis6.jpg"/>
-        <ItemCard src="items/tenis7.jpg"/>
-      </ItemsSection>
+      <Div>
+        <ItemsSection>
+          <ItemCard src="items/tenis1.jpg"/>
+          <ItemCard src="items/tenis2.jpg"/>
+          <ItemCard src="items/tenis3.jpg"/>
+          <ItemCard src="items/tenis4.jpg"/>
+          <ItemCard src="items/tenis5.jpg"/>
+          <ItemCard src="items/tenis6.jpg"/>
+          <ItemCard src="items/tenis7.jpg"/>
+        </ItemsSection>
+      </Div>
 
 
     </Page>
