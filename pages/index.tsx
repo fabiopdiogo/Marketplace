@@ -6,6 +6,7 @@ import Cover from '../src/Sections/Cover/Cover';
 import ItemCard from '../src/componentes/ItemsCard/ItemsCard';
 
 export default function HomePage(){
+
   const [menuIsVisible, setMenuIsVisible] = useState(true);
 
   const Page = styled.div`
@@ -16,7 +17,8 @@ export default function HomePage(){
     display: flex;
     justify-content: center;
     align-items: center;
-`
+    width: fit-content;
+  `
   const Img = styled.img`
     width: 100vw;
   `
@@ -36,7 +38,6 @@ export default function HomePage(){
       grid-template-columns: repeat(2, 1fr);
       grid-gap:40px;
     }
-
   `
 
   return(
@@ -55,8 +56,6 @@ export default function HomePage(){
           <ItemCard src="items/tenis7.jpg"/>
         </ItemsSection>
       </Div>
-
-
     </Page>
   )
 }

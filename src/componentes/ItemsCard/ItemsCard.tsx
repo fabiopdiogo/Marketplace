@@ -15,7 +15,6 @@ const Card = styled.div`
     0px 0px 4px rgba(0, 0, 0, 0.2), /* Sombra fraca em todas as direções */
     8px 0px 8px -4px rgba(0, 0, 0, 0.2); /* Sombra mais forte na direita */
   }
-
 `
 
 const Image = styled.img`

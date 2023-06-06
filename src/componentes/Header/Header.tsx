@@ -12,7 +12,7 @@ const Header = ({setMenuIsVisible}:Props) => {
     <>      
       <header className={styles.header}>
         <h1>CALÇADOS</h1>
-          
+
         <div className={styles.options}>
           <a>CICLISMO</a>
           <a>FEMININO</a>
@@ -28,7 +28,7 @@ const Header = ({setMenuIsVisible}:Props) => {
 
         <div className={styles.icons}>
           <img src="icons/search.png" alt="" />
-          <img src="icons/carrinho.png" alt="" />
+          <a href="/carrinho"><img src="icons/carrinho.png" alt="" /></a>
           <img src="icons/user-50.png" alt="" />   
         </div>
         
