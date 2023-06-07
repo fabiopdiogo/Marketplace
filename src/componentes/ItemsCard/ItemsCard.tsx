@@ -1,7 +1,6 @@
 import styled  from "styled-components";
 
 const Card = styled.div`
-  background-color:#ca1f1f;
   display: flex;
   flex-direction: column;
   width: 100%; /* Largura fixa da div pai */

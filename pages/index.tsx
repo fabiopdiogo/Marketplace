@@ -33,10 +33,13 @@ export default function HomePage(){
 
     @media(max-width: 1440px){
       grid-template-columns: repeat(3, 1fr);
+      padding: 10px;      
+      padding-right: 40px;
     }
     @media(max-width: 678px){
       grid-template-columns: repeat(2, 1fr);
       grid-gap:40px;
+      padding-right: 40px;
     }
   `
 
