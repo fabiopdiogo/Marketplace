@@ -1,4 +1,4 @@
-import  {hashPassword}  from '../../utils/bcrypt'
+import  {hashPassword, comparePassword}  from '../../utils/bcrypt'
 
 import User from './user.model'
 
@@ -16,6 +16,16 @@ export const signupUser = async (body) => {
 }
 
 export const login = async (body) => {
-  console.log(body)
-  return true
+  try{
+    const user = await User.findOne({ email: body.email })
+
+    if(!user) throw new Error('not found')
+    const passwordIsCorrect = comparePassword(body.password, user.password)
+    if (!passwordIsCorrect) throw new Error('password incorrect')
+
+    return user
+  }catch (err){
+    throw err
+  }
+
 }
