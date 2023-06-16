@@ -1,4 +1,5 @@
 import React from "react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { joiResolver } from '@hookform/resolvers/joi'
 import styled from "styled-components";
@@ -65,35 +66,55 @@ const StyledSelect = styled.select`
 `
 
 function signup(){
-  const {control,handleSubmit} = useForm({
+
+  const [firstName,setFirstName] = useState('');
+  const [lastName,setLastName] = useState('');
+  const [email,setEmail] = useState('');
+  const [data,setData] = useState('');
+  const [cpf,setCPF] = useState('');
+  const [sex,setSex] = useState('');
+  const [number,setNumber] = useState('');
+  const [password,setPassword] = useState('');
+
+  const {register,handleSubmit, formState: {errors}} = useForm({
     resolver: joiResolver(signupSchema)
   })
 
-  function handleForm(data){
-    console.log(data)
+  console.log(errors)
+
+  function handleForm(event){
+    console.log({
+      firstName,
+      lastName,
+      email,
+      data,
+      cpf,
+      sex,
+      password,
+      number
+    })
   }
 
   return(
-    <Container>
-      
+    <Container>      
       <h2>Insira seus dados</h2>
       <Form onSubmit={handleSubmit(handleForm)}>
-        <Input name="nome" label="Nome" control={control} defaultValue=""/>
-        <Input name="sobrenome" label="Sobrenome" control={control} defaultValue=""/>
-        <Input name="email" label="E-mail" control={control} defaultValue=""/>
-        <Input name="data" label="Data" control={control} defaultValue=""/>
+        <Input name="nome" label="Nome" onChange = {(event) => setFirstName((event.target.value))} />
+        <Input name="sobrenome" label="Sobrenome" onChange = {(event) => setLastName(event.target.value)}/>
+        <Input name="email" label="E-mail" onChange = {(event) => setEmail(event.target.value)}/>
+        <Input name="data" label="Data" onChange = {(event) => setData(event.target.value)}/>
         <Sexo>
           <StyledLabel>Sexo</StyledLabel>
-          <StyledSelect name="sexo"  placeholder="Sexo" defaultValue="vazio">
+          <StyledSelect name="sexo"  placeholder="Sexo" onChange = {(event) =>setSex(event.target.value)}>
             <option value="vazio">Selecione...</option>
             <option value="Masculino">Masculino</option>
             <option value="Feminino">Feminino</option>
           </StyledSelect>
         </Sexo>
-        <Input name="cpf" label="CPF" control={control} defaultValue=""/>
-        <Input name="telefone" label="Telefone" control={control} defaultValue=""/>
-        <Input name="senha" label="Senha" control={control} defaultValue=""/>
-        <Button type="submit" >Cadastrar</Button>
+        <Input name="cpf" label="CPF" onChange = {(event) =>setCPF(event.target.value)}/>
+        <Input name="telefone" label="Telefone" onChange = {(event) =>setNumber(event.target.value)}/>
+        <Input name="senha" label="Senha" onChange = {(event) =>setPassword(event.target.value)}/>
+        <Button onClick={handleForm} >Cadastrar</Button>
       </Form>  
     </Container>
   )

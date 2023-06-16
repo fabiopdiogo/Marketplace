@@ -1,11 +1,10 @@
 import styled from 'styled-components'
 import { Control, FieldValues, useController } from 'react-hook-form'
-
-import { Tooltip as ReactTooltip } from 'react-tooltip'
-
+import { useRef, forwardRef } from 'react'
 
 
-const InputContainer = styled.div<InputProps>`
+
+const InputContainer = styled.div<ContainerProps>`
   width: 100%;
   grid-area: ${props =>props.grid};
 `
@@ -43,25 +42,22 @@ const errorMessage = {
 
 interface Props{
   name: string,
-  control: Control<FieldValues>,
-  label: string,
-  defaultValue: string
+  control?: Control<FieldValues>,
+  label?: string,
+  defaultValue?: string
+  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void; 
 }
 
-type InputProps ={
+type ContainerProps ={
   grid: string;
 }
 
-const Input = ({label,name, control, defaultValue = ''} : Props) => {
-  const{
-    field: { value, onChange },
-    fieldState: { error }
-  } = useController({ name, control, defaultValue})
+const Input =({label,name, control, defaultValue = '', onChange} : Props) => {
+
   return (
     <InputContainer grid={name}>
       <StyledLabel>{label}</StyledLabel>
-      <StyledInput placeholder={label} value={value} onChange={onChange} />
-      {error && <ErrorLabel>{errorMessage[error.type] || error.message}</ErrorLabel>}      
+      <StyledInput placeholder={label}  onChange={onChange}/>
     </InputContainer>
   )
 }

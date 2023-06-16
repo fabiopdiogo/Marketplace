@@ -5,6 +5,7 @@ export const signupSchema = Joi.object({
   lastName: Joi.string().required().max(50).message('O campo "sobrenome" pode ter no máximo {{#limit}} caracteres'),
   email: Joi.string().email({ tlds: {allow: false}} ).required().max(100).message('O campo "email" pode ter no máximo {{#limit}} caracteres'),
   date: Joi.string().pattern(/^\d{2}\/\d{2}\/\d{4}$/).required(),
+  sex: Joi.string().required(),
   cpf: Joi.string().required()
     .max(11).message('O campo "cpf" deve conter {{#limit}} caracteres')
     .min(11).message('O campo "cpf" precisa ter ter no mínimo {{#limit}} caracteres'),
