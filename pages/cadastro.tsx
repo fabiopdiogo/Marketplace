@@ -16,35 +16,42 @@ const asyncFunction = async () => {
 const schema = yup
   .object()
   .shape({
-    firstName: yup.string().required(),
-    lastName: yup.string().required(),
+    firstName: yup.string().min(1,'Campo obrigatório').required(), 
+    lastName: yup.string().required('Campo obrigatório').required()
   })
   .required();
 
 
 function SignUp(){
 
-  const { register, handleSubmit } = useForm({
+  const { register, handleSubmit, formState, reset } = useForm({
     resolver: yupResolver(schema),
+    mode:'all',
+    defaultValues:{
+      firstName: "",
+      lastName: ""
+    }
   });
-  //const { errors, isSubmitting } = formState;
-  //console.log('errors', errors);
+  const { errors, isSubmitting } = formState;
+  console.log('errors', errors);
   
-  const handleSubmitData =  (data: any) => {
+  const handleSubmitData =  async (data: any) => {
     console.log('submit',data);
+    await asyncFunction()
   }
 
   return(
     <form onSubmit={handleSubmit(handleSubmitData)}>
       <input {...register('firstName')} />
+      {errors.firstName && <p>{errors.firstName.message}</p>}
       <input {...register('lastName')} />
-      <input type="submit" />
+      {errors.lastName && <p>{errors.lastName.message}</p>}
+      <button type="submit">{isSubmitting ? 'Enviando...': 'Enviar'}</button>
     </form>
   )
   
 }
 
 export default SignUp;
-
 
 
