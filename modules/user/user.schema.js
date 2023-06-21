@@ -1,27 +1,17 @@
-import Joi from "joi";
+import { z } from "zod";
 
-export const signupSchema = Joi.object({
-  firstName: Joi.string().required().max(50).message('O campo "nome" pode ter no máximo {{#limit}} caracteres'),
-  lastName: Joi.string().required().max(50).message('O campo "sobrenome" pode ter no máximo {{#limit}} caracteres'),
-  email: Joi.string().email({ tlds: {allow: false}} ).required().max(100).message('O campo "email" pode ter no máximo {{#limit}} caracteres'),
-  date: Joi.string().pattern(/^\d{2}\/\d{2}\/\d{4}$/).required(),
-  sex: Joi.string().required(),
-  cpf: Joi.string().required()
-    .max(11).message('O campo "cpf" deve conter {{#limit}} caracteres')
-    .min(11).message('O campo "cpf" precisa ter ter no mínimo {{#limit}} caracteres'),
-  password: Joi.string().required()
-    .max(50).message('O campo "senha" pode ter no máximo {{#limit}} caracteres')
-    .min(6).message('O campo "senha" precisa ter ter no mínimo {{#limit}} caracteres'),
-  number: Joi.string().required()
-    .max(11).message('O campo "telefone" deve conter {{#limit}} caracteres')
-    .min(11).message('O campo "telefone" precisa ter ter no mínimo {{#limit}} caracteres'),
+export const signupSchema = z.object({
+  firstName: z.string().min(1,'O campo "nome" pode ter no máximo 1 caracteres').max(50,'O campo "nome" pode ter no máximo 50 caracteres'), 
+  lastName: z.string().min(1,'O campo "senha" pode ter no minimo 1 caracteres').max(50,'O campo "sobrenome" pode ter no máximo {{#limit}} caracteres'),
+  email: z.string().email().max(100, 'O campo "email" pode ter no máximo 100 caracteres'),
+  date: z.string().regex(/^\d{2}\/\d{2}\/\d{4}$/),
+  sex: z.string(),
+  cpf: z.string().min(11,'O campo "cpf" deve conter 11 caracteres').max(11,'O campo "cpf" deve conter 11 caracteres'),
+  password: z.string().min(6, 'O campo "senha" pode ter no minimo 6 caracteres').max(50,'O campo "senha" pode ter no máximo 50 caracteres'),
+  number: z.string().min(11, 'O campo "telefone" deve conter 11 numeros').max(11, 'O campo "telefone" deve conter 11 numeros'),
+});
 
-  
-})
-
-export const loginSchema = Joi.object({
-  email: Joi.string().required(),
-  password: Joi.string().required()
-  .max(50).message('O campo "senha" pode ter no máximo {{#limit}} caracteres')
-  .min(6).message('O campo "senha" precisa ter ter no mínimo {{#limit}} caracteres'),
-})
+export const loginSchema = z.object({
+  email: z.string(),
+  password: z.string().min(6, 'O campo "senha" pode ter no minimo 6 caracteres').max(50, 'O campo "senha" pode ter no máximo 50 caracteres'),
+});

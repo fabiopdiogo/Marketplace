@@ -1,8 +1,5 @@
 import styled from 'styled-components'
 import { Control, FieldValues, useController } from 'react-hook-form'
-import { useRef, forwardRef } from 'react'
-
-
 
 const InputContainer = styled.div<ContainerProps>`
   width: 100%;
@@ -46,18 +43,20 @@ interface Props{
   label?: string,
   defaultValue?: string
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void; 
+  helperText?:string;
+  error:string
 }
 
 type ContainerProps ={
   grid: string;
 }
 
-const Input =({label,name, control, defaultValue = '', onChange} : Props) => {
+const Input =({label,name,helperText,error} : Props) => {
 
   return (
     <InputContainer grid={name}>
       <StyledLabel>{label}</StyledLabel>
-      <StyledInput placeholder={label}  onChange={onChange}/>
+      <StyledInput placeholder={label} />
     </InputContainer>
   )
 }
