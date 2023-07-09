@@ -1,53 +1,34 @@
 import React from "react";
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import * as yup from 'yup';
+import styled from "styled-components";
 
-const asyncFunction = async () => {
-  const myPromise = new Promise((resolve) => {
-    setTimeout(() =>{
-      resolve('Hello')
-    }, 3000)
-  });
+import Input from "../src/componentes/inputs/Input";
 
-  return myPromise;
-}
-
-const schema = yup
-  .object()
-  .shape({
-    firstName: yup.string().min(1,'Campo obrigatório').required(), 
-    lastName: yup.string().required('Campo obrigatório').required()
-  })
-  .required();
-
+const Form = styled.form`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  padding: 50px;
+`
 
 function SignUp(){
 
-  const { register, handleSubmit, formState, reset } = useForm({
-    resolver: yupResolver(schema),
-    mode:'all',
-    defaultValues:{
-      firstName: "",
-      lastName: ""
-    }
-  });
-  const { errors, isSubmitting } = formState;
-  console.log('errors', errors);
-  
-  const handleSubmitData =  async (data: any) => {
-    console.log('submit',data);
-    await asyncFunction()
-  }
-
   return(
-    <form onSubmit={handleSubmit(handleSubmitData)}>
-      <input {...register('firstName')} />
-      {errors.firstName && <p>{errors.firstName.message}</p>}
-      <input {...register('lastName')} />
-      {errors.lastName && <p>{errors.lastName.message}</p>}
-      <button type="submit">{isSubmitting ? 'Enviando...': 'Enviar'}</button>
-    </form>
+    <Form >
+      <Input label="Nome" name="nome" error={""} />
+      <Input label="Sobrenome" name="sobrenome" error={""} />
+      <Input label="Email" name="email" error={""} />
+      <Input label="Data" name="data" error={""} />
+      <Input label="Sexo" name="sexo" error={""} />
+      <Input label="CPF" name="cpf" error={""} />
+      <Input label="Telefone" name="telefone" error={""} />
+      <Input label="Senha" name="senha" error={""} />
+      <Input label="Nome" name="nome" error={""} />
+      <button type="submit" />
+     </Form>
   )
   
 }
